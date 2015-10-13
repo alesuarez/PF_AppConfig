@@ -13,21 +13,25 @@ package com.pf.rs232.entity;
 public class Trama {
     private String address;
     private String command;
+    private String data;
     private String payload;
-    private String lrc;
-    Trama(String address, String command, String payload) {
+    private int lrc;
+    public Trama(String address, String command, String data) {
         this.address = address;
         this.command = command;
-        this.payload = payload;
-    }
-    private String getLRC() {
-        lrc = "";
-        String paquete = new StringBuilder().append(address)
-                            .append(command).append(payload).toString();
-        
-        for(int i=0; i < paquete.length();i++) {
-             
+        this.data = data;
+        this.lrc = 0;
+        this.payload = new StringBuilder().append(address)
+                            .append(command).append(data).toString();
+        for(int i=0; i < payload.length(); i++) {
+            lrc = lrc ^ payload.codePointAt(i);
         }
-        return ": |";
+    }
+    
+    public int LRC() {
+        return lrc;
+    }
+    public String getPayload() {
+        return this.payload;
     }
 }

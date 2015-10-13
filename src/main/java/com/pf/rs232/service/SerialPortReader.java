@@ -27,8 +27,7 @@ public class SerialPortReader implements SerialPortEventListener{
                     //Read data, if 10 bytes available 
                     try {
                         byte buffer[] = serialPort.readBytes(10);
-                    }
-                    catch (SerialPortException ex) {
+                    } catch (SerialPortException ex) {
                         System.out.println(ex);
                     }
                 }
@@ -42,7 +41,7 @@ public class SerialPortReader implements SerialPortEventListener{
                 }
             }
             else if(event.isDSR()){///If DSR line has changed state
-                if(event.getEventValue() == 1){//If line is ON
+                if(event.getEventValue() == 1) {//If line is ON
                     System.out.println("DSR - ON");
                 }
                 else {
