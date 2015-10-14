@@ -28,13 +28,12 @@ public class Drive {
                 int mask = SerialPort.MASK_RXCHAR + SerialPort.MASK_CTS + SerialPort.MASK_DSR;//Prepare mask
                 serialPort.setEventsMask(mask);//Set mask
                 serialPort.addEventListener(new SerialPortReader(serialPort));//Add SerialPortEventListener
-                System.out.printf("Abierto con exito");
+                return true;
         }
         catch (SerialPortException ex) {
            System.out.printf("problema al abrir "+comSelected);
            return false;
         }
-        return true;
     }
     public void sendData() {
         if (serialPort != null) {

@@ -7,8 +7,6 @@ package com.pf.rs232.presentation;
 
 import com.pf.rs232.controller.Drive;
 import com.pf.rs232.entity.Trama;
-import java.awt.List;
-import java.util.Arrays;
 
 /**
  *
@@ -61,9 +59,9 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         cbPuertos = new javax.swing.JComboBox();
-        jButton2 = new javax.swing.JButton();
+        jbAbrir = new javax.swing.JButton();
         jbBaudRate = new javax.swing.JComboBox();
-        jButton4 = new javax.swing.JButton();
+        jbCerrar = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -109,6 +107,8 @@ public class ventanaPrincipal extends javax.swing.JFrame {
 
         jrBaudRate.setSelected(true);
         jrBaudRate.setText("BAUD RATE");
+        jrBaudRate.setEnabled(false);
+        jrBaudRate.setFocusable(false);
         jrBaudRate.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jrBaudRateMouseClicked(evt);
@@ -121,6 +121,8 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         });
 
         jrTemperatura.setText("TEMPERATURA");
+        jrTemperatura.setEnabled(false);
+        jrTemperatura.setFocusable(false);
         jrTemperatura.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jrTemperaturaMouseClicked(evt);
@@ -158,6 +160,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        jtDato.setEnabled(false);
         jtDato.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtDatoActionPerformed(evt);
@@ -173,6 +176,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         jLabel6.setText("DIRECCION");
 
         jtDireccion.setText("1");
+        jtDireccion.setEnabled(false);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -263,18 +267,18 @@ public class ventanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Abrir Puerto");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jbAbrir.setText("Abrir Puerto");
+        jbAbrir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jbAbrirActionPerformed(evt);
             }
         });
 
         jbBaudRate.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1200", "9600", "14400" }));
         jbBaudRate.setSelectedIndex(1);
 
-        jButton4.setText("Cerrar Puerto");
-        jButton4.setEnabled(false);
+        jbCerrar.setText("Cerrar Puerto");
+        jbCerrar.setEnabled(false);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -290,9 +294,9 @@ public class ventanaPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cbPuertos, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(jbAbrir)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
+                .addComponent(jbCerrar)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -301,11 +305,11 @@ public class ventanaPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jButton2)
+                    .addComponent(jbAbrir)
                     .addComponent(jLabel3)
                     .addComponent(cbPuertos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbBaudRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4))
+                    .addComponent(jbCerrar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -385,9 +389,19 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbPuertosActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        drive.setPort(cbPuertos.getSelectedItem().toString(), Integer.valueOf(jbBaudRate.getSelectedItem().toString()));        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void jbAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAbrirActionPerformed
+        String puerto = cbPuertos.getSelectedItem().toString();
+        int baudRate = Integer.valueOf(jbBaudRate.getSelectedItem().toString());
+        
+        if (drive.setPort(puerto, baudRate)) {
+            jrBaudRate.enable(true);
+            jrTemperatura.enable(true);
+            jtDato.enable(true);
+            jtDireccion.enable(true);
+            jbBaudRate.enable(false);
+            cbPuertos.enable(false);
+        }
+    }//GEN-LAST:event_jbAbrirActionPerformed
 
     private void jrTemperaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrTemperaturaActionPerformed
         // TODO add your handling code here:
@@ -403,6 +417,8 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         jrTemperatura.setSelected(true);
         jtDato.setText("");
         jtDato.enable(false);
+        jtDato.requestFocus();
+        jbAbrir.enable(false);
     }//GEN-LAST:event_jrTemperaturaMouseClicked
 
     private void jrBaudRateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jrBaudRateMouseClicked
@@ -410,7 +426,8 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         jrTemperatura.setSelected(false);
         jrBaudRate.setSelected(true);
         jtDato.enable(true);
-
+        jtDato.requestFocus();
+        jbCerrar.enable();
     }//GEN-LAST:event_jrBaudRateMouseClicked
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -466,9 +483,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox cbPuertos;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
@@ -487,7 +502,9 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea3;
+    private javax.swing.JButton jbAbrir;
     private javax.swing.JComboBox jbBaudRate;
+    private javax.swing.JButton jbCerrar;
     private javax.swing.JRadioButton jrBaudRate;
     private javax.swing.JRadioButton jrTemperatura;
     private javax.swing.JTextField jtDato;
