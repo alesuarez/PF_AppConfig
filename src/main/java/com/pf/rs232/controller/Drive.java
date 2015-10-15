@@ -6,6 +6,7 @@
 package com.pf.rs232.controller;
 
 
+import com.pf.rs232.entity.Trama;
 import com.pf.rs232.service.SerialPortReader;
 import jssc.*;
 
@@ -16,7 +17,8 @@ import jssc.*;
  */
 
 public class Drive {
-    SerialPort serialPort = null;
+    private SerialPort serialPort = null;
+    private Trama trama = null;
     public String[] getPort() {
         return SerialPortList.getPortNames();
     }
@@ -31,14 +33,22 @@ public class Drive {
                 return true;
         }
         catch (SerialPortException ex) {
-           System.out.printf("problema al abrir "+comSelected);
+           System.out.printf("Problema al abrir: " + comSelected);
            return false;
         }
     }
-    public void sendData() {
+    public void sendData(Trama trama) {
+        this.trama = trama;
         if (serialPort != null) {
             try {
-               serialPort.writeInt(84);
+                serialPort.writeInt(1); // S O H 
+                serialPort.writeInt(1); // S O H 
+                serialPort.writeInt(1); // S O H 
+                for (int i=0;i<trama.getPayload().length();i++) {
+                    serialPort.writeInt(trama.getPayload().codePointAt(i));
+                }
+                serialPort.writeInt(trama.getLrc());
+                serialPort.writeInt(4); // E O T
             } catch (SerialPortException ex) {
                 System.out.println("There are an error on writing string to port т: " + ex);
             }
@@ -51,5 +61,5 @@ public class Drive {
     public String getData() {
         return null;
     }
-    
+   
 }

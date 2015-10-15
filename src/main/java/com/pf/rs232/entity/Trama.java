@@ -27,11 +27,75 @@ public class Trama {
             lrc = lrc ^ payload.codePointAt(i);
         }
     }
-    
-    public int LRC() {
+
+    /**
+     * @return the address
+     */
+    public String getAddress() {
+        return address;
+    }
+
+    /**
+     * @param address the address to set
+     */
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    /**
+     * @return the command
+     */
+    public String getCommand() {
+        return command;
+    }
+
+    /**
+     * @param command the command to set
+     */
+    public void setCommand(String command) {
+        this.command = command;
+    }
+
+    /**
+     * @return the data
+     */
+    public String getData() {
+        return data;
+    }
+
+    /**
+     * @param data the data to set
+     */
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    /**
+     * @return the payload
+     */
+    public String getPayload() {
+        return payload;
+    }
+
+    /**
+     * @param payload the payload to set
+     */
+    public void setPayload(String payload) {
+        this.payload = payload;
+    }
+
+    /**
+     * @return the lrc
+     */
+    public int getLrc() {
         return lrc;
     }
-    public String getPayload() {
-        return this.payload;
+
+    /**
+     * @param lrc the lrc to set
+     */
+    public void setLrc(int lrc) {
+        this.lrc = lrc;
     }
+     
 }

@@ -82,7 +82,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextArea" name="jTextArea1">
+            <Component class="javax.swing.JTextArea" name="jtaRX">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="columns" type="int" value="20"/>
@@ -114,7 +114,7 @@
                   <Component id="jPanel4" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jButton1" max="32767" attributes="0"/>
+                      <Component id="jbEnviar" max="32767" attributes="0"/>
                       <Component id="jButton6" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -129,7 +129,7 @@
                       <Group type="102" attributes="0">
                           <Component id="jButton6" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jbEnviar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
@@ -145,13 +145,12 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="jbEnviar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Enviar"/>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbEnviarActionPerformed"/>
           </Events>
         </Component>
         <Container class="javax.swing.JPanel" name="jPanel3">
@@ -173,7 +172,7 @@
                           <Component id="jrBaudRate" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jrTemperatura" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="20" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -201,8 +200,7 @@
               <Properties>
                 <Property name="selected" type="boolean" value="true"/>
                 <Property name="text" type="java.lang.String" value="BAUD RATE"/>
-                <Property name="enabled" type="boolean" value="false"/>
-                <Property name="focusable" type="boolean" value="false"/>
+                <Property name="focusCycleRoot" type="boolean" value="true"/>
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jrBaudRateMouseClicked"/>
@@ -212,7 +210,6 @@
             <Component class="javax.swing.JRadioButton" name="jrTemperatura">
               <Properties>
                 <Property name="text" type="java.lang.String" value="TEMPERATURA"/>
-                <Property name="enabled" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
               <Events>
@@ -277,9 +274,6 @@
           </Layout>
           <SubComponents>
             <Component class="javax.swing.JTextField" name="jtDato">
-              <Properties>
-                <Property name="enabled" type="boolean" value="false"/>
-              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtDatoActionPerformed"/>
               </Events>
@@ -307,7 +301,6 @@
             <Component class="javax.swing.JTextField" name="jtDireccion">
               <Properties>
                 <Property name="text" type="java.lang.String" value="1"/>
-                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -416,6 +409,9 @@
             <Property name="text" type="java.lang.String" value="Cerrar Puerto"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbCerrarActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -479,6 +475,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Cerrar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
