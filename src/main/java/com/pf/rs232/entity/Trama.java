@@ -27,6 +27,13 @@ public class Trama {
             lrc = lrc ^ payload.codePointAt(i);
         }
     }
+    
+    public int LRC() {
+        return getLrc();
+    }
+    public String getPayload() {
+        return this.payload;
+    }
 
     /**
      * @return the address
@@ -71,13 +78,6 @@ public class Trama {
     }
 
     /**
-     * @return the payload
-     */
-    public String getPayload() {
-        return payload;
-    }
-
-    /**
      * @param payload the payload to set
      */
     public void setPayload(String payload) {
@@ -97,5 +97,4 @@ public class Trama {
     public void setLrc(int lrc) {
         this.lrc = lrc;
     }
-     
 }

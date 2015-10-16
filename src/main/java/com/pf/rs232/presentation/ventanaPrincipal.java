@@ -40,7 +40,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtaRX = new javax.swing.JTextArea();
+        jtRX = new javax.swing.JTextArea();
         jPanel2 = new javax.swing.JPanel();
         jbEnviar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
@@ -67,18 +67,22 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextArea3 = new javax.swing.JTextArea();
         jButton5 = new javax.swing.JButton();
+        jPanel7 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtLog = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Vaqueador");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jtaRX.setEditable(false);
-        jtaRX.setColumns(20);
-        jtaRX.setRows(5);
-        jtaRX.setText("//\t                       PAYLOAD\n//                                /¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\\\n// ---------------------------------------------------------------------\n//| SOH | SOH | SOH | Dir | CMD |       DATO      | LRC | EOT |\n// ---------------------------------------------------------------------\n//      1       1         1       1      1       <variable>        1       1");
-        jtaRX.setEnabled(false);
-        jScrollPane1.setViewportView(jtaRX);
+        jtRX.setEditable(false);
+        jtRX.setColumns(20);
+        jtRX.setFont(new java.awt.Font("DialogInput", 0, 11)); // NOI18N
+        jtRX.setRows(5);
+        jtRX.setText("//\t                       PAYLOAD\n//                                /¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\\\n// ---------------------------------------------------------------------\n//| SOH | SOH | SOH | Dir | CMD |       DATO      | LRC | EOT |\n// ---------------------------------------------------------------------\n//      1       1         1       1      1       <variable>        1       1");
+        jtRX.setEnabled(false);
+        jScrollPane1.setViewportView(jtRX);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -106,7 +110,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
 
         jrBaudRate.setSelected(true);
         jrBaudRate.setText("BAUD RATE");
-        jrBaudRate.setFocusCycleRoot(true);
+        jrBaudRate.setFocusable(false);
         jrBaudRate.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jrBaudRateMouseClicked(evt);
@@ -141,7 +145,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jrBaudRate)
                     .addComponent(jrTemperatura))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -274,11 +278,6 @@ public class ventanaPrincipal extends javax.swing.JFrame {
 
         jbCerrar.setText("Cerrar Puerto");
         jbCerrar.setEnabled(false);
-        jbCerrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbCerrarActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -343,11 +342,30 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
                     .addComponent(jButton5)))
+        );
+
+        jPanel7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jtLog.setEditable(false);
+        jtLog.setColumns(20);
+        jtLog.setRows(5);
+        jtLog.setEnabled(false);
+        jScrollPane2.setViewportView(jtLog);
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2)
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -360,7 +378,8 @@ public class ventanaPrincipal extends javax.swing.JFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -374,6 +393,8 @@ public class ventanaPrincipal extends javax.swing.JFrame {
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -386,16 +407,19 @@ public class ventanaPrincipal extends javax.swing.JFrame {
 
     private void jbEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEnviarActionPerformed
         // TODO add your handling code here:
-        String comando = "";
+        String cmd = "";
         if (jrBaudRate.isSelected()) {
-            comando = "1";
-        } else if (jrTemperatura.isSelected()) {
-            comando = "2";
+            cmd = "1";
         }
-       trama = new Trama(jtDireccion.getText(),comando,jtDato.getText());
-       drive.sendData(trama);
-       System.out.println(trama.getLrc());
-       // jtLRC.setText(Integer.toString(trama.getLrc()));
+        else if (jrTemperatura.isSelected()) {
+            cmd = "2";
+        }
+        
+        trama = new Trama(jtDireccion.getText(),cmd,jtDato.getText());
+        jtLRC.setText(Integer.toString(trama.LRC()));
+        
+        drive.sendData(trama);
+        jtLog.append("Trama de configuracion enviada.");
     }//GEN-LAST:event_jbEnviarActionPerformed
 
     private void cbPuertosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPuertosActionPerformed
@@ -403,16 +427,15 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_cbPuertosActionPerformed
 
     private void jbAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAbrirActionPerformed
-        
         String puerto = cbPuertos.getSelectedItem().toString();
         int baudRate = Integer.valueOf(jbBaudRate.getSelectedItem().toString());
-        boolean abrirPuerto = drive.setPort(puerto, baudRate);
         
-        if (abrirPuerto) {
-            jtaRX.setText("Exito en abrir el puerto: " + puerto);
+        if (drive.setPort(puerto, baudRate)) {
+            jtLog.append("Exito en abrir el puerto: " + puerto);
+        } else {
+            jtLog.append("Error al intentar abrir el puerto: " + puerto);
         }
         
-        jtaRX.setText("Error al intentar abrir el puerto: " + puerto);
     }//GEN-LAST:event_jbAbrirActionPerformed
 
     private void jrTemperaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrTemperaturaActionPerformed
@@ -438,9 +461,8 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         jrTemperatura.setSelected(false);
         jrBaudRate.setSelected(true);
         jtDato.enable(true);
-        jbCerrar.enable();
         jtDato.requestFocus();
-        
+        jbCerrar.enable();
     }//GEN-LAST:event_jrBaudRateMouseClicked
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -453,14 +475,12 @@ public class ventanaPrincipal extends javax.swing.JFrame {
             cmd = "2";
         }
         trama = new Trama(jtDireccion.getText(),cmd,jtDato.getText());
-        jtLRC.setText(Integer.toString(trama.getLrc()));
+        jtLRC.setText(Integer.toString(trama.LRC()));
+        
     }//GEN-LAST:event_jButton6ActionPerformed
 
-    private void jbCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCerrarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbCerrarActionPerformed
-
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -518,7 +538,9 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextArea jTextArea3;
     private javax.swing.JButton jbAbrir;
@@ -530,6 +552,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField jtDato;
     private javax.swing.JTextField jtDireccion;
     private javax.swing.JTextField jtLRC;
-    private javax.swing.JTextArea jtaRX;
+    private javax.swing.JTextArea jtLog;
+    private javax.swing.JTextArea jtRX;
     // End of variables declaration//GEN-END:variables
 }

@@ -17,8 +17,7 @@ import jssc.*;
  */
 
 public class Drive {
-    private SerialPort serialPort = null;
-    private Trama trama = null;
+    SerialPort serialPort = null;
     public String[] getPort() {
         return SerialPortList.getPortNames();
     }
@@ -33,22 +32,20 @@ public class Drive {
                 return true;
         }
         catch (SerialPortException ex) {
-           System.out.printf("Problema al abrir: " + comSelected);
+           System.out.printf("problema al abrir "+comSelected);
            return false;
         }
     }
     public void sendData(Trama trama) {
-        this.trama = trama;
         if (serialPort != null) {
             try {
-                serialPort.writeInt(1); // S O H 
-                serialPort.writeInt(1); // S O H 
-                serialPort.writeInt(1); // S O H 
-                for (int i=0;i<trama.getPayload().length();i++) {
-                    serialPort.writeInt(trama.getPayload().codePointAt(i));
-                }
+                 serialPort.writeInt(1);
+                 serialPort.writeInt(1);
+                 serialPort.writeInt(1);
+                for (int i = 0; i < trama.getPayload().length(); i++)
+                    serialPort.writeInt(trama.getPayload().charAt(i));
                 serialPort.writeInt(trama.getLrc());
-                serialPort.writeInt(4); // E O T
+                serialPort.writeInt(4);
             } catch (SerialPortException ex) {
                 System.out.println("There are an error on writing string to port т: " + ex);
             }
@@ -61,5 +58,5 @@ public class Drive {
     public String getData() {
         return null;
     }
-   
+    
 }
