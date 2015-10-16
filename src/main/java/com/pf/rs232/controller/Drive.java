@@ -32,7 +32,7 @@ public class Drive {
                 return true;
         }
         catch (SerialPortException ex) {
-           System.out.printf("problema al abrir "+comSelected);
+           System.out.printf("problema al abrir " + comSelected);
            return false;
         }
     }
@@ -46,6 +46,17 @@ public class Drive {
                     serialPort.writeInt(trama.getPayload().charAt(i));
                 serialPort.writeInt(trama.getLrc());
                 serialPort.writeInt(4);
+            } catch (SerialPortException ex) {
+                System.out.println("There are an error on writing string to port т: " + ex);
+            }
+        }
+    }
+    
+    public void sendPaquet(String paquete) {
+        if (serialPort != null) {
+            try {
+                for (int i = 0; i < paquete.length(); i++)
+                    serialPort.writeInt(paquete.charAt(i));
             } catch (SerialPortException ex) {
                 System.out.println("There are an error on writing string to port т: " + ex);
             }
