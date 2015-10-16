@@ -425,9 +425,9 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         int baudRate = Integer.valueOf(jbBaudRate.getSelectedItem().toString());
         
         if (drive.setPort(puerto, baudRate)) {
-            jtLog.append("\nExito en abrir el puerto: " + puerto);
+            jtLog.append("Exito en abrir el puerto: " + puerto);
         } else {
-            jtLog.append("\nError al intentar abrir el puerto: " + puerto);
+            jtLog.append("Error al intentar abrir el puerto: " + puerto);
         }
         
     }//GEN-LAST:event_jbAbrirActionPerformed
