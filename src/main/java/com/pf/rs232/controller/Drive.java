@@ -8,6 +8,7 @@ package com.pf.rs232.controller;
 
 import com.pf.rs232.entity.Trama;
 import com.pf.rs232.service.SerialPortReader;
+import javax.swing.JTextArea;
 import jssc.*;
 
 
@@ -21,14 +22,14 @@ public class Drive {
     public String[] getPort() {
         return SerialPortList.getPortNames();
     }
-    public boolean setPort(String comSelected, int baudRate) {
+    public boolean setPort(String comSelected, int baudRate,JTextArea jTextArea) {
         serialPort = new SerialPort(comSelected);
         try {
                 serialPort.openPort();//Open port
                 serialPort.setParams(baudRate, 8, 1, 0);//Set params
                 int mask = SerialPort.MASK_RXCHAR + SerialPort.MASK_CTS + SerialPort.MASK_DSR;//Prepare mask
                 serialPort.setEventsMask(mask);//Set mask
-                serialPort.addEventListener(new SerialPortReader(serialPort));//Add SerialPortEventListener
+                serialPort.addEventListener(new SerialPortReader(serialPort,jTextArea));
                 return true;
         }
         catch (SerialPortException ex) {
