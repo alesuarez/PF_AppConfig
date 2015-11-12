@@ -402,7 +402,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         }
         
         trama = new Trama(jtDireccion.getText(),cmd,jtDato.getText());
-        jtLRC.setText(Integer.toString(trama.LRC()));
+        jtLRC.setText(Integer.toString(trama.getLrc()));
         
         drive.sendData(trama);
         jtLog.append("\nTrama de configuracion enviada.");

@@ -11,28 +11,41 @@ package com.pf.rs232.entity;
  * @author laptop
  */
 public class Trama {
+    private int length;
     private String address;
     private String command;
     private String data;
     private String payload;
     private int lrc;
+    
     public Trama(String address, String command, String data) {
         this.address = address;
         this.command = command;
         this.data = data;
         this.lrc = 0;
+        this.length = 1+1+data.length();
+        
         this.payload = new StringBuilder().append(address)
                             .append(command).append(data).toString();
-        for(int i=0; i < payload.length(); i++) {
+        
+        lrc = this.length;
+        for(int i = 0; i < payload.length(); i++) {
             lrc = lrc ^ payload.codePointAt(i);
         }
     }
-    
-    public int LRC() {
-        return getLrc();
+
+    /**
+     * @return the length
+     */
+    public int getLength() {
+        return length;
     }
-    public String getPayload() {
-        return this.payload;
+
+    /**
+     * @param length the length to set
+     */
+    public void setLength(int length) {
+        this.length = length;
     }
 
     /**
@@ -78,6 +91,13 @@ public class Trama {
     }
 
     /**
+     * @return the payload
+     */
+    public String getPayload() {
+        return payload;
+    }
+
+    /**
      * @param payload the payload to set
      */
     public void setPayload(String payload) {
@@ -97,4 +117,6 @@ public class Trama {
     public void setLrc(int lrc) {
         this.lrc = lrc;
     }
+    
+   
 }
